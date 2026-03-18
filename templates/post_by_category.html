@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if category %}
+    <h3 class="text-center text-uppercase text-warning border border-primary p-2 mb-4 rounded">{{ category.category_name }}</h3>
+  {% endif %}
+
+  {% comment %}Category Wise Post{% endcomment %}
+
+  <div class="row mb-2">
+    {% if posts %}
+      {% for post in posts %}
+        <div class="col-md-6">
+          <div class="card border-0">
+            <div class="card-body">
+              {% if post.featured_image %}
+                <img src="{{ post.featured_image.url }}" class="card-img-top mb-3" style="height:300px; object-fit:cover;" />
+              {% endif %}
+              <h3>{{ post.title }}</h3>
+              <small class="mb-1 text-muted">{{ post.created_at|timesince }} ago | {{ post.author }}</small>
+              <p class="card-text">{{ post.short_description|truncatewords:30 }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="col-12">
+        <div class="alert alert-info text-center" role="alert">No posts available in this category.</div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
