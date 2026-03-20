@@ -20,3 +20,17 @@ def post_by_category(request, category_id):
     }
     
     return render(request, 'post_by_category.html' , context )
+
+def single_post_view(request,category_name, slug ):
+    
+    try:
+        post = Blog.objects.get( status = 'Published' ,slug = slug , category__category_name = category_name)
+    except Blog.DoesNotExist:
+        post = None
+        
+    
+    context ={
+        'post': post,
+    }
+    
+    return render(request , 'single_post_view.html' , context,)

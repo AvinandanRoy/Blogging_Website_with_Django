@@ -13,7 +13,7 @@
           <h1 class="display-4 font-italic">{{ featured_post.title }}</h1>
           <p class="lead my-3">{{ featured_post.short_description|truncatewords:30 }}</p>
           <p class="lead mb-0">
-            <a href="#" class="text-white font-weight-bold">Continue reading...</a>
+            <a href="{% url 'single_post_view' featured_post.category featured_post.slug %}" class="text-white font-weight-bold">Continue reading...</a>
           </p>
         </div>
       </div>
@@ -25,11 +25,14 @@
   <div class="row mb-2">
     {% for featured_post in featured_posts %}
       {% if not forloop.first %}
-        <div class="col-md-6">
+        <div class="col-md-6" href="#">
           <div class="card border-0">
             <div class="card-body">
-              <h3>{{ featured_post.title }}</h3>
-              <small class="mb-1 text-muted">{{ featured_post.created_at|timesince }} ago | {{ featured_post.author }}</small>
+              {% if featured_post.featured_image %}
+                <img src="{{ featured_post.featured_image.url }}" class="card-img-top mb-3" style="height:300px; object-fit:cover;" />
+              {% endif %}
+              <h3><a href="{% url 'single_post_view' featured_post.category featured_post.slug %}" class="text-dark">{{ featured_post.title }}</a></h3>
+              <small class="mb-1 text-muted">{{ featured_post.created_at }} | {{ featured_post.created_at|timesince }} ago | {{ featured_post.author }}</small>
               <p class="card-text">{{ featured_post.short_description|truncatewords:30 }}</p>
             </div>
           </div>
@@ -46,8 +49,11 @@
         {% for recent_post in recent_posts %}
           <div class="card border-0">
             <div class="card-body">
-              <h3>{{ recent_post.title }}</h3>
-              <small class="mb-1 text-muted">{{ recent_post.created_at|timesince }} ago | {{ recent_post.author }}</small>
+              {% if recent_post.featured_image %}
+                <img src="{{ recent_post.featured_image.url }}" class="card-img-top mb-3" style="height:300px; object-fit:cover;" />
+              {% endif %}
+              <h3><a href="{% url 'single_post_view' recent_post.category recent_post.slug %}" class="text-dark">{{ recent_post.title }}</a></h3>
+              <small class="mb-1 text-muted">{{ recent_post.created_at }} | {{ recent_post.created_at|timesince }} ago | {{ recent_post.author }}</small>
               <p class="card-text">{{ recent_post.short_description|truncatewords:30 }}</p>
             </div>
           </div>
