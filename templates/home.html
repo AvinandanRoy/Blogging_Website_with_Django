@@ -21,7 +21,7 @@
   {% endfor %}
 
   {% comment %}Another Feature Articles{% endcomment %}
-  <h3 class="text-center text-uppercase text-warning border border-primary p-2 mb-4 rounded">Featured Articles</h3>
+  <h3 class="text-center text-uppercase text-warning p-3 mb-4 rounded" style="background: linear-gradient(90deg, #343a40, #495057); border: 2px solid #ffc107; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">Featured Articles</h3>
   <div class="row mb-2">
     {% for featured_post in featured_posts %}
       {% if not forloop.first %}
@@ -42,7 +42,7 @@
   </div>
 
   {% comment %}Recent Articles{% endcomment %}
-  <h3 class="text-center text-uppercase text-warning border border-primary p-2 mb-4 rounded">Recent Articles</h3>
+  <h3 class="text-center text-uppercase text-warning p-3 mb-4 rounded" style="background: linear-gradient(90deg, #343a40, #495057); border: 2px solid #ffc107; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">Recent Articles</h3>
   <main role="main" class="container p-0">
     <div class="row">
       <div class="col-md-8 blog-main">

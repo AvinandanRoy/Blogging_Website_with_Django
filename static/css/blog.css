@@ -54,16 +54,30 @@ h1, h2, h3, h4, h5, h6 {
   color: #727272;
 }
 
-/*
- * Footer
- */
-.blog-footer {
-  padding: 2.5rem 0;
-  color: #727272;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: .05rem solid #e5e5e5;
+/* Footer */
+
+ .footer{
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+ }
+ .footer-link {
+  color: #ccc;
+  text-decoration: none;
 }
-.blog-footer p:last-child {
-  margin-bottom: 0;
+
+.footer-link:hover {
+  color: #ffc107;
+  transition: 0.3s;
+}
+
+.footer-icon {
+  font-size: 1.4rem;
+  padding-right: 10px;
+  color: #ccc;
+  font-size: 1.2rem;
+}
+
+.footer-icon:hover {
+  color: #ffc107;
+  transform: scale(1.1);
+  transition: 0.3s;
 }
