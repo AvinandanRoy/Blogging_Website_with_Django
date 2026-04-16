@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h3 class="text-center">Registration</h3>
+  <form action="" method="post" class="d-flex flex-column justify-content-center align-items-center">
+    {% csrf_token %}
+    {{ form }}
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <button type="submit" class="btn btn-secondary">Register</button>
+      </div>
+      <div class="btn-group mr-2" role="group" aria-label="Second group">
+        <button type="button" class="btn btn-secondary">Already have an account</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}

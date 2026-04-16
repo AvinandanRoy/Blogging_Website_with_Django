@@ -2,7 +2,7 @@
 
 {% block content %}
   {% if category %}
-    <h3 class="text-center text-uppercase text-warning border border-primary p-2 mb-4 rounded">{{ category.category_name }}</h3>
+    <h3 class="text-center text-uppercase text-warning p-3 mb-4 rounded" style="background: linear-gradient(90deg, #343a40, #495057); border: 2px solid #ffc107; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">{{ category.category_name }}</h3>
   {% endif %}
 
   {% comment %}Category Wise Post{% endcomment %}

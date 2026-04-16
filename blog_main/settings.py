@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogs',
+    'aboutSocialLink',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,7 @@ TEMPLATES = [
                 
                 # custom context processor
                 'blogs.context_processors.get_categories',
+                'blogs.context_processors.get_social_Links',
             ],
         },
     },

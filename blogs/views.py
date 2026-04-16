@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 
+from aboutSocialLink.models import Social_Media_Link
 from blogs.models import Blog, Category
 
 # Create your views here.
@@ -28,9 +29,11 @@ def single_post_view(request,category_name, slug ):
     except Blog.DoesNotExist:
         post = None
         
+    categories = Category.objects.all()
     
     context ={
         'post': post,
+        'categories': categories,
     }
     
     return render(request , 'single_post_view.html' , context,)
