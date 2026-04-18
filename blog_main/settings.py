@@ -124,11 +124,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 
+# This is where Django looks for static files during development
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+# ADD THIS LINE: This is where collectstatic will gather files for production
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
