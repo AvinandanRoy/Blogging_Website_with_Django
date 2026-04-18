@@ -31,5 +31,7 @@ urlpatterns = [
     path('category/', include('blogs.urls')),
     
     path('<str:category_name>/<slug:slug>/', Blogs_Views.single_post_view, name='single_post_view', ),
-    path('register/', views.register , name='register')
+    path('register/', views.register , name='register'),
+    path('login/', views.login , name='login'),
+    path('logout/', views.logout , name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
