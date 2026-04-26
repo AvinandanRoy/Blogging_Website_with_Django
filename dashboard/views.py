@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.contrib import messages
-
+from django.utils.text import slugify
 from blogs.models import Blog, Category
 from .forms import BlogForm, CategoryForm
 
@@ -107,6 +107,26 @@ def delete_blog(req , slug):
     return render(req , "dashboard/delete_blog.html", context)
 
 def add_blog(req):
-    form = BlogForm()
+    if req.method == 'POST':
+        form = BlogForm(req.POST, req.FILES)
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.author = req.user
+
+            # ✅ generate slug
+            base_slug = slugify(blog.title)
+            slug = base_slug
+            counter = 1
+
+            # ✅ ensure unique slug
+            while Blog.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            blog.slug = slug
+            blog.save()
+            return redirect("view_blog_list")
+    else:
+        form = BlogForm()
     context ={"form": form,}
     return render(req, "dashboard/add_blog.html", context)
