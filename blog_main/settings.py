@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'aboutSocialLink',
     'crispy_forms',
     'crispy_bootstrap5',
+    'dashboard',
 ]
 
 MIDDLEWARE = [

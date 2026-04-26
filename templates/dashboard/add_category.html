@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% load crispy_forms_tags %}
+
+  {% comment %}CSS{% endcomment %}
+  <style>
+    .bg-info-subtle {
+      background-color: #e0f7fa !important;
+      color: #00838f !important;
+    }
+    .table thead th {
+      border-top: none;
+      letter-spacing: 0.05em;
+    }
+    /* Prevents the table from feeling too cramped on small screens */
+    .table-responsive {
+      border: none;
+    }
+    @media (max-width: 576px) {
+      .fs-1-mobile {
+        font-size: 1.5rem !important;
+      }
+      .card-body {
+        padding: 1.25rem !important;
+      }
+    }
+  </style>
+
+  {% comment %}template{% endcomment %}
+  <div class="container-fluid">
+    <div class="row">
+      {% comment %}Sidebar: Full width on mobile (col-12), appears as 3-columns on large screens (col-lg-3){% endcomment %}
+      {% include 'dashboard/sidebar.html' %}
+      {% comment %}Right side{% endcomment %}
+      <div class="col-md-9">
+        <form action="{% url 'add_category' %}" method="POST">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button class="btn btn-success">Add Category</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

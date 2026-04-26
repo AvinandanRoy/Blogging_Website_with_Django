@@ -55,7 +55,7 @@ def login(req):
             
             if user is not None:
                 auth.login(req, user )
-            return redirect("home")
+            return redirect("dashboard")
     else:
         form = AuthenticationForm()
     

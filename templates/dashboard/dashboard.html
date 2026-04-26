@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row">
+    {% comment %}left side{% endcomment %}
+    {% include 'dashboard/sidebar.html' %}
+    {% comment %}Right side{% endcomment %}
+    <div class="col-md-9">
+      <p class="text-center p-3 bg-success text-white font-weight-bold fs-1">Hi {{ user.first_name }} {{ user.last_name }}</p>
+      <div class="row">
+        {% comment %}First column{% endcomment %}
+        <div class="col">
+          <div class="card border-default mb-3">
+            <div class="card-header text-center text-uppercase font-weight-bold">All categories</div>
+            <div class="card-body text-dark">
+              <h5 class="card-title text-center">{{ category_count }}</h5>
+            </div>
+            <div class="card-footer bg-transparent border-0 pb-4 px-4">
+              <a href="{% url 'view_category' %}" class="btn btn-outline-primary w-100 rounded-pill fw-bold">View all categories</a>
+            </div>
+          </div>
+        </div>
+        {% comment %}Second column{% endcomment %}
+        <div class="col">
+          <div class="card border-default mb-3">
+            <div class="card-header text-center text-uppercase font-weight-bold">All Blogs</div>
+            <div class="card-body text-dark">
+              <h5 class="card-title text-center">{{ blog_count }}</h5>
+            </div>
+            <div class="card-footer bg-transparent border-0 pb-4 px-4">
+              <a href="{% url 'view_blog_list' %}" class="btn btn-outline-primary w-100 rounded-pill fw-bold">View all Blogs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 import blogs
+import dashboard
 
 from . import views
 
@@ -30,8 +31,11 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('category/', include('blogs.urls')),
     
-    path('<str:category_name>/<slug:slug>/', Blogs_Views.single_post_view, name='single_post_view', ),
+    path('post/<str:category_name>/<slug:slug>/', Blogs_Views.single_post_view, name='single_post_view', ),
     path('register/', views.register , name='register'),
     path('login/', views.login , name='login'),
     path('logout/', views.logout , name='logout'),
+    
+    # dashboard
+    path('dashboard/', include("dashboard.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

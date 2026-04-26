@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      {% comment %}Sidebar: Full width on mobile (col-12), appears as 3-columns on large screens (col-lg-3){% endcomment %}
+      {% include 'dashboard/sidebar.html' %}
+      {% comment %}Right side{% endcomment %}
+      <div class="col-md-9">
+        <div class="card shadow">
+          <div class="card-body">
+            <h3 class="text-danger">Confirm Delete</h3>
+            <p>
+              Are you sure you want to delete the category: <strong>{{ category.name }}</strong>?
+            </p>
+
+            <form method="POST" action="{% url 'delete_blog' blog.slug %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Yes, Delete</button>
+              <a href="{% url 'view_blog_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
