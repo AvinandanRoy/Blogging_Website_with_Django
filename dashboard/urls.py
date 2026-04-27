@@ -14,7 +14,11 @@ urlpatterns= [
     # Blog CRUD
     path('add_blog/',views.add_blog ,name='add_blog'),
     path('view_blog_list/',views.view_blog_list ,name='view_blog_list'),
-    path('edit_blog/<slug:slug>',views.edit_blog ,name='edit_blog'),
-    path('delete_blog/<slug:slug>',views.delete_blog ,name='delete_blog'),
+    path('edit_blog/<slug:slug>/',views.edit_blog ,name='edit_blog'),
+    path('delete_blog/<slug:slug>/',views.delete_blog ,name='delete_blog'),
+    
+    # User CRUD
+    path('view_users_list/',views.view_users_list ,name='view_users_list'),
+    path('add_user/',views.add_user ,name='add_user'),
     
 ]

@@ -3,6 +3,9 @@
     <a href="{% url 'dashboard' %}" class="nav-link text-dark  {% if '/dashboard/' == request.path %}bg-warning{% endif %}">Dashboard</a>
     <a href="{% url 'view_category' %}" class="nav-link text-dark {% if '/dashboard/view_category/' in request.path or '/dashboard/add_category/' in request.path or '/dashboard/delete_category/' in request.path %}bg-warning{% endif %}">Manage Category</a>
     <a href="{% url 'view_blog_list' %}" class="nav-link text-dark {% if '/view_blog_list/' in request.path or 'edit_blog' in request.path or 'add_blog' in request.path %}bg-warning{% endif %}">Manage Blogs</a>
+    {% if perms.auth.add_user or perms.auth.delete_user or perms.auth.change_user or perms.auth.view_user %}
+      <a href="{% url 'view_users_list' %}" class="nav-link text-dark {% if '/view_users_list/' in request.path or '/add_user/' in request.path %}bg-warning{% endif %}">Manage User</a>
+    {% endif %}
     <a href="" class="nav-link text-dark">Logout</a>
   </div>
 </div>

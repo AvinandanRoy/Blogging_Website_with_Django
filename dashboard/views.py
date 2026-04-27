@@ -1,10 +1,13 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import User
 from django.db.models import Count
 from django.contrib import messages
 from django.utils.text import slugify
 from blogs.models import Blog, Category
-from .forms import BlogForm, CategoryForm
+from .forms import BlogForm, CategoryForm, UserForm
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 
@@ -93,6 +96,7 @@ def edit_blog(req, slug):
     }
     return render(req, "dashboard/edit_blog.html" ,context)
 
+@login_required(login_url="login")
 def delete_blog(req , slug):
     blog = get_object_or_404(Blog , slug = slug)
     
@@ -106,6 +110,7 @@ def delete_blog(req , slug):
     }
     return render(req , "dashboard/delete_blog.html", context)
 
+@login_required(login_url="login")
 def add_blog(req):
     if req.method == 'POST':
         form = BlogForm(req.POST, req.FILES)
@@ -117,7 +122,6 @@ def add_blog(req):
             base_slug = slugify(blog.title)
             slug = base_slug
             counter = 1
-
             # ✅ ensure unique slug
             while Blog.objects.filter(slug=slug).exists():
                 slug = f"{base_slug}-{counter}"
@@ -130,3 +134,29 @@ def add_blog(req):
         form = BlogForm()
     context ={"form": form,}
     return render(req, "dashboard/add_blog.html", context)
+
+@login_required(login_url="login")
+@permission_required('auth.view_user', raise_exception=True)
+def view_users_list(req):
+    users = User.objects.all().order_by('-id')
+
+    context ={
+        "users": users,
+    }
+    return render(req, "dashboard/view_users_list.html" , context )
+
+
+@login_required(login_url="login")
+@permission_required('auth.add_user', raise_exception=True)
+def add_user(req):
+    if req.method == 'POST':
+        form = UserForm(req.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("view_users_list")
+    else:
+        form = UserForm()
+    context ={
+      'form': form,  
+    }
+    return render(req, "dashboard/add_user.html" , context )
