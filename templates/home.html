@@ -32,7 +32,7 @@
                 <img src="{{ featured_post.featured_image.url }}" class="card-img-top mb-3" style="height:300px; object-fit:cover;" />
               {% endif %}
               <h3><a href="{% url 'single_post_view' featured_post.category featured_post.slug %}" class="text-dark">{{ featured_post.title }}</a></h3>
-              <small class="mb-1 text-muted">{{ featured_post.created_at }} | {{ featured_post.created_at|timesince }} ago | {{ featured_post.author }}</small>
+              <small class="mb-1 text-muted">{{ featured_post.created_at }} | {{ featured_post.created_at|timesince }} ago | <a href="{% url 'view_user_profile' featured_post.author %}" class="text-muted">{{ featured_post.author }}</a></small>
               <p class="card-text">{{ featured_post.short_description|truncatewords:30 }}</p>
             </div>
           </div>
@@ -54,7 +54,7 @@
               {% endif %}
               <h3><a href="{% url 'single_post_view' recent_post.category recent_post.slug %}" class="text-dark">{{ recent_post.title }}</a></h3>
               <strong class="d-inline-block mb-2 text-primary">{{ recent_post.category }}</strong> |
-              <small class="mb-1 text-muted">{{ recent_post.created_at }} | {{ recent_post.created_at|timesince }} ago | {{ recent_post.author }}</small>
+              <small class="mb-1 text-muted">{{ recent_post.created_at }} | {{ recent_post.created_at|timesince }} ago | <a href="{% url 'view_user_profile' recent_post.author %}" class="text-muted">{{ recent_post.author }}</a></small>
               <p class="card-text">{{ recent_post.short_description|truncatewords:30 }}</p>
             </div>
           </div>

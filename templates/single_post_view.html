@@ -13,7 +13,9 @@
               <!-- Post title -->
               <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
               <!-- Post meta content -->
-              <div class="text-muted fst-italic mb-2">Posted on {{ post.created_at }} by {{ post.author }}</div>
+              <div class="fst-italic mb-2 text-muted">
+                Posted on {{ post.created_at }} by <a href="{% url 'view_user_profile' post.author %}" class="text-muted">{{ post.author }}</a>
+              </div>
               <!-- Post category -->
               <a class="badge bg-warning text-decoration-none text-light" href="{% url 'post_by_category' post.category_id %} ">{{ post.category }}</a>
             </header>
