@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% load crispy_forms_tags %}
+  {% comment %}CSS{% endcomment %}
+  <style>
+    .bg-info-subtle {
+      background-color: #e0f7fa !important;
+      color: #00838f !important;
+    }
+    .table thead th {
+      border-top: none;
+      letter-spacing: 0.05em;
+    }
+    /* Prevents the table from feeling too cramped on small screens */
+    .table-responsive {
+      border: none;
+    }
+    
+    /*Button Design*/
+    .btn-custom {
+      transition: all 0.3s ease;
+    }
+    
+    /* Cancel Button Hover */
+    .btn-light.btn-custom:hover {
+      background-color: #e2e6ea;
+      transform: translateY(-2px);
+    }
+    
+    /* Update Button Hover */
+    .btn-primary.btn-custom:hover {
+      background-color: #0b5ed7;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    
+    @media (max-width: 576px) {
+      .fs-1-mobile {
+        font-size: 1.5rem !important;
+      }
+      .card-body {
+        padding: 1.25rem !important;
+      }
+    }
+  </style>
+
+  {% comment %}template{% endcomment %}
+  <div class="container-fluid">
+    <div class="row">
+      {% comment %}Sidebar: Full width on mobile (col-12), appears as 3-columns on large screens (col-lg-3){% endcomment %}
+      {% include 'dashboard/sidebar.html' %}
+      {% comment %}Right side{% endcomment %}
+      <div class="col-md-9">
+        <form action="{% url 'edit_user' user.username %}" method="POST">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <div class="d-flex justify-content-end gap-2 mt-4">
+            <a href="{% url 'view_users_list' %}" class="btn btn-light border btn-custom">Cancel</a>
+            &nbsp; &nbsp;
+            <button type="submit" class="btn btn-primary btn-custom"><i class="fa fa-save me-1"></i> Update User</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -101,9 +101,9 @@
                         <div class="d-flex justify-content-start gap-2">
                           <a href="" class="btn btn-outline-success btn-sm rounded" title="View"><i class="fa fa-eye"></i></a>
                           &nbsp;
-                          <a href="" class="btn btn-outline-warning btn-sm rounded" title="Edit"><i class="fa fa-edit"></i></a>
+                          <a href="{% url 'edit_user' user.username %}" class="btn btn-outline-warning btn-sm rounded" title="Edit"><i class="fa fa-edit"></i></a>
                           &nbsp;
-                          <a href="" class="btn btn-outline-danger btn-sm rounded" title="Delete"><i class="fa fa-trash"></i></a>
+                          <a href="{% url 'delete_user' user.username %}" class="btn btn-outline-danger btn-sm rounded" title="Delete"><i class="fa fa-trash"></i></a>
                         </div>
                       </td>
                     </tr>

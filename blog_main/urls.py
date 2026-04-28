@@ -17,9 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-import blogs
-import dashboard
-
 from . import views
 
 from django.conf.urls.static import static
@@ -38,4 +35,7 @@ urlpatterns = [
     
     # dashboard
     path('dashboard/', include("dashboard.urls")),
+    
+    # userProfile
+    path('user/profile/', include("userProfile.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

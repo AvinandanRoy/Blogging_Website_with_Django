@@ -20,5 +20,6 @@ urlpatterns= [
     # User CRUD
     path('view_users_list/',views.view_users_list ,name='view_users_list'),
     path('add_user/',views.add_user ,name='add_user'),
-    
+    path('edit_user/<str:username>/',views.edit_user ,name='edit_user'),
+    path('delete_user/<str:username>/',views.delete_user ,name='delete_user'),    
 ]
