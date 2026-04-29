@@ -136,7 +136,7 @@ STATICFILES_DIRS = [
 ]
 
 # ADD THIS LINE: This is where collectstatic will gather files for production
-STATIC_ROOT = '/data/staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -146,7 +146,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # for media files 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/data/media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # crispy form 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
