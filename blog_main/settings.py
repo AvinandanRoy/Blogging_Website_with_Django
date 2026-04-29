@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 
@@ -21,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-id2@i99&nslukt5(x3(rf1zga7*c%)(an@p9vz4p%j3y^+%h*3'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-id2@i99&nslukt5(x3(rf1zga7*c%)(an@p9vz4p%j3y^+%h*3')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bloggingwebsitewithdjango-production.up.railway.app', 'localhost', '127.0.0.1']
 
 
 # Application definition
