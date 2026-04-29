@@ -27,21 +27,35 @@ def home(req):
     
     return render(req, 'home.html' , context)
 
+from django.contrib.auth.models import Group
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
 def register(req):
     if req.method == 'POST':
         form = RegistrationForms(req.POST)
         
         if form.is_valid():
-            form.save()
+            user = form.save()   # 👈 get the user object
+
+            # Assign to "editor" group
+            try:
+                group = Group.objects.get(name='Editor')
+                user.groups.add(group)
+            except Group.DoesNotExist:
+                pass  # optional safety
+
             username = form.cleaned_data.get('username')
             messages.success(req, f'Account created for {username}!')
             return redirect("home")
+
     else:
         form = RegistrationForms()
+
     context = {
-        'form' : form,
+        'form': form,
     }
-    return render(req , 'register.html', context,)
+    return render(req, 'register.html', context)
 
 def login(req):
     if req.method == 'POST':

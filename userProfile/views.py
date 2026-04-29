@@ -5,6 +5,7 @@ from userProfile.forms import UserProfileForm
 from django.contrib.auth.decorators import login_required
 
 from userProfile.models import UserProfile
+from blogs.models import Blog
 
 # Create your views here.
 @login_required(login_url="login")
@@ -15,9 +16,12 @@ def profile(req):
     except:
         profile = None
     
+    own_blogs = Blog.objects.filter(author__username =req.user)
+    
     context ={
         'user': user,
         'profile': profile,
+        'own_blogs': own_blogs,
     }
     
     return render(req, "profile/userProfile.html", context  )
@@ -41,9 +45,10 @@ def editUserProfile(req):
     }
     return render(req, "profile/editUserProfile.html", context)
 
-
+@login_required(login_url="login")
 def view_user_profile(req , username):
     user = get_object_or_404(User , username = username)
+    blogs = Blog.objects.filter(author__username = username) #author is User foreign key
     
     try:
         profile = user.userprofile
@@ -52,5 +57,6 @@ def view_user_profile(req , username):
     context ={
         "user" : user,
         'profile': profile ,
+        "blogs": blogs ,
     }
     return render(req , "profile/view_user_profile.html", context)
